@@ -51,6 +51,7 @@ import org.apache.commons.pool2.KeyedObjectPool;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 public class PooledSession implements Session, TopicSession, QueueSession, XASession {
     private static final transient Logger LOG = LoggerFactory.getLogger(PooledSession.class);
 
@@ -230,10 +231,44 @@ public class PooledSession implements Session, TopicSession, QueueSession, XASes
         return result;
     }
 
+// -- The Below Methods Are part of JMS2.0 and Are not implemented yet
+
     @Override
     public void unsubscribe(String s) throws JMSException {
         getInternalSession().unsubscribe(s);
     }
+
+    // UnImplemented JMS2.0 methods
+    @Override
+    public MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public MessageConsumer createSharedConsumer(Topic topic, String sharedSubscriptionName, String messageSelector) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public MessageConsumer createDurableConsumer(Topic topic, String name) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public MessageConsumer createDurableConsumer(Topic topic, String name, String messageSelector, boolean noLocal) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public MessageConsumer createSharedDurableConsumer(Topic topic, String name) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public MessageConsumer createSharedDurableConsumer(Topic topic, String name, String messageSelector) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+    // -- The Above Methods Are part of JMS2.0 and Are not implemented yet
 
     @Override
     public TextMessage createTextMessage() throws JMSException {

@@ -16,11 +16,9 @@
  */
 package org.apache.activemq.jms.pool;
 
-import javax.jms.Destination;
-import javax.jms.InvalidDestinationException;
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.MessageProducer;
+
+
+import javax.jms.*;
 
 /**
  * A pooled {@link MessageProducer}
@@ -164,5 +162,36 @@ public class PooledProducer implements MessageProducer {
     @Override
     public String toString() {
         return "PooledProducer { " + messageProducer + " }";
+    }
+
+    // UnImplemented JMS2.0 methods
+    @Override
+    public void send(Message message, CompletionListener completionListener) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public void send(Destination destination, Message message, CompletionListener completionListener) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public void send(Message message, int deliveryMode, int priority, long timeToLive, CompletionListener completionListener) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public void send(Destination destination, Message message, int deliveryMode, int priority, long timeToLive, CompletionListener completionListener) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public long getDeliveryDelay() throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public void setDeliveryDelay(long deliveryDelay) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
     }
 }

@@ -40,6 +40,7 @@ import javax.jms.TopicSession;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+
 /**
  * Represents a proxy {@link Connection} which is-a {@link TopicConnection} and
  * {@link QueueConnection} which is pooled and on {@link #close()} will return
@@ -174,6 +175,27 @@ public class PooledConnection implements TopicConnection, QueueConnection, Poole
         // creates / destroys temporary destinations and closes etc.
         result.addSessionEventListener(this);
         return result;
+    }
+
+// UnImplemented JMS2.0 methods
+    @Override
+    public ConnectionConsumer createSharedDurableConnectionConsumer(Topic topic, String s, String s1, ServerSessionPool serverSessionPool, int i) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public ConnectionConsumer createSharedConnectionConsumer(Topic topic, String s, String s1, ServerSessionPool serverSessionPool, int i) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public Session createSession(int i) throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
+    }
+
+    @Override
+    public Session createSession() throws JMSException {
+        throw new UnsupportedOperationException("JMS2.0 Method Not Implemented with pooled Connection");
     }
 
     // Implementation methods
